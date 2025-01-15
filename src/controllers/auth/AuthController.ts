@@ -2,11 +2,9 @@ import catchAsync from "../../utils/catchAsync";
 import prisma from "../../client";
 import {
   comparePassword,
-  exclude,
   generateToken,
   hashPassword,
 } from "../../utils/helpers";
-import { ConflictException } from "../../utils/exception";
 import Response from "../../utils/response";
 import {
   changePasswordSchema,
