@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Task {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String   @db.VarChar(50)
+  description String?
+  deadline    DateTime
+  priority    String
+
+  // Assigned user
+  assigned   User @relation("TasksAssignedToUser", fields: [assignedId], references: [id])
+  assignedId Int
+
+  // Creator of the task
+  userId  Int?
+  creator User? @relation("TasksCreatedByUser", fields: [userId], references: [id])
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  name     String
+  email    String @unique
+  password String
+
+  // Tasks assigned to this user
+  TaskAssigned Task[] @relation("TasksAssignedToUser")
+
+  // Tasks created by this user
+  TasksCreated Task[] @relation("TasksCreatedByUser")
+}
+
+model Tax {
+  id                 Int    @id @default(autoincrement())
+  itemName           String
+  exemptionStatus    String
+  vatInclusiveAmount Float
+  vatAmount          Float
+  vatExclusivePrice  Float
+}
