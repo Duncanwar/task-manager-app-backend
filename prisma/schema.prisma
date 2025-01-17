@@ -26,23 +26,14 @@ model Task {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  name     String
-  email    String @unique
-  password String
-
+  id           Int    @id @default(autoincrement())
+  name         String
+  email        String @unique
+  password     String
+  role         String
   // Tasks assigned to this user
   TaskAssigned Task[] @relation("TasksAssignedToUser")
 
   // Tasks created by this user
   TasksCreated Task[] @relation("TasksCreatedByUser")
-}
-
-model Tax {
-  id                 Int    @id @default(autoincrement())
-  itemName           String
-  exemptionStatus    String
-  vatInclusiveAmount Float
-  vatAmount          Float
-  vatExclusivePrice  Float
 }

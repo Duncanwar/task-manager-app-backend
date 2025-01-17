@@ -5,11 +5,7 @@ import { errorHandler } from "../middlewares/errorHandler";
 
 const router = Router();
 
-router.get(
-  "/",
-  // tokenAuthentication,
-  UserController.getUsers
-);
+router.get("/", tokenAuthentication, UserController.getUsers);
 
 // router.use(errorHandler);
 export default router;

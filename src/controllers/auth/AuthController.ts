@@ -18,7 +18,7 @@ interface User {
 
 export default class AuthController {
   static signup = catchAsync(async (req, res) => {
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
 
     const { error } = signupSchema.validate(req.body);
 
@@ -37,8 +37,8 @@ export default class AuthController {
 
     const hashedPassword = await hashPassword(password);
     const user = await prisma.user.create({
-      data: { name, password: hashedPassword, email },
-      select: { id: true, name: true, email: true }, // Exclude password at query level
+      data: { name, password: hashedPassword, email, role: "admin" },
+      select: { id: true, name: true, email: true, role: true }, // Exclude password at query level
     });
 
     return Response.success(res, 201, "User created", user);
