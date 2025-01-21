@@ -11,10 +11,8 @@ import {
   loginSchema,
   signupSchema,
 } from "../../validations/User.validation";
-
-interface User {
-  id: string | number;
-}
+import UserService from "../../services/UserServices";
+import { UserDto } from "./dto";
 
 export default class AuthController {
   static signup = catchAsync(async (req, res) => {
@@ -29,16 +27,18 @@ export default class AuthController {
       });
     }
 
-    const userExists = await prisma.user.findUnique({ where: { email } });
+    const userExists = await UserService.findUserByEmail(email);
 
     if (userExists) {
       return Response.error(res, 409, "User already exists", {});
     }
 
     const hashedPassword = await hashPassword(password);
-    const user = await prisma.user.create({
-      data: { name, password: hashedPassword, email, role: "admin" },
-      select: { id: true, name: true, email: true, role: true }, // Exclude password at query level
+    const user = await UserService.create({
+      name,
+      password: hashedPassword,
+      email,
+      role,
     });
 
     return Response.success(res, 201, "User created", user);
@@ -56,10 +56,7 @@ export default class AuthController {
       });
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email },
-      // select: { id: true, name: true, email: true, password: true }, // Include password for comparison
-    });
+    const user = await UserService.findUserByEmail(email);
 
     if (!user || !(await comparePassword(password, user.password))) {
       return Response.error(res, 422, "User Not Found", {});
@@ -85,9 +82,7 @@ export default class AuthController {
       });
     }
     const hashNewPassword = await hashPassword(newPassword);
-    const user = await prisma.user.findUnique({
-      where: { id: req.user?.id as number },
-    });
+    const user = await UserService.findUserById(req.user?.id as number);
 
     if (!(await comparePassword(currentPassword, user?.password as string))) {
       return Response.error(res, 400, "current password is incorrect");
@@ -108,9 +103,7 @@ export default class AuthController {
   static deleteUser = catchAsync(async (req, res) => {
     const { id } = req.params;
     if (!req.user) return Response.error(res, 403, "Unauthorized request");
-    const userExists = await prisma.user.findUnique({
-      where: { id: parseInt(id) },
-    });
+    const userExists = await UserService.findUserById(parseInt(id));
     if (!userExists) {
       return Response.error(res, 404, "Nonexistent user ID");
     }

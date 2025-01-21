@@ -293,7 +293,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/client@npm:^6.0.1":
+"@prisma/client@npm:^6.2.1":
   version: 6.2.1
   resolution: "@prisma/client@npm:6.2.1"
   peerDependencies:
@@ -2391,7 +2391,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prisma@npm:^6.0.1":
+"prisma@npm:^6.2.1":
   version: 6.2.1
   resolution: "prisma@npm:6.2.1"
   dependencies:
@@ -2838,7 +2838,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "task-manager-app@workspace:."
   dependencies:
-    "@prisma/client": "npm:^6.0.1"
+    "@prisma/client": "npm:^6.2.1"
     "@types/bcrypt": "npm:^5"
     "@types/cors": "npm:^2"
     "@types/express": "npm:^5.0.0"
@@ -2853,7 +2853,7 @@ __metadata:
     jsonwebtoken: "npm:^9.0.2"
     nodemon: "npm:^3.1.7"
     pg: "npm:^8.13.1"
-    prisma: "npm:^6.0.1"
+    prisma: "npm:^6.2.1"
     ts-node: "npm:^10.9.2"
     tsx: "npm:^4.19.2"
     typescript: "npm:^5.7.2"
