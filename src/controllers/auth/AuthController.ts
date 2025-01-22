@@ -12,7 +12,6 @@ import {
   signupSchema,
 } from "../../validations/User.validation";
 import UserService from "../../services/UserServices";
-import { UserDto } from "./dto";
 
 export default class AuthController {
   static signup = catchAsync(async (req, res) => {
