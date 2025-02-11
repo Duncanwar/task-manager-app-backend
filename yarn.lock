@@ -510,7 +510,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/express@npm:^5.0.0":
+"@types/express@npm:*, @types/express@npm:^5.0.0":
   version: 5.0.0
   resolution: "@types/express@npm:5.0.0"
   dependencies:
@@ -612,6 +612,23 @@ __metadata:
     "@types/node": "npm:*"
     "@types/send": "npm:*"
   checksum: 10c0/26ec864d3a626ea627f8b09c122b623499d2221bbf2f470127f4c9ebfe92bd8a6bb5157001372d4c4bd0dd37a1691620217d9dc4df5aa8f779f3fd996b1c60ae
+  languageName: node
+  linkType: hard
+
+"@types/swagger-jsdoc@npm:^6.0.4":
+  version: 6.0.4
+  resolution: "@types/swagger-jsdoc@npm:6.0.4"
+  checksum: 10c0/fbe17d91a12e1e60a255b02e6def6877c81b356c75ffcd0e5167fbaf1476e2d6600cd7eea79e6b3e0ff7929dec33ade345147509ed3b98026f63c782b74514f6
+  languageName: node
+  linkType: hard
+
+"@types/swagger-ui-express@npm:^4.1.7":
+  version: 4.1.7
+  resolution: "@types/swagger-ui-express@npm:4.1.7"
+  dependencies:
+    "@types/express": "npm:*"
+    "@types/serve-static": "npm:*"
+  checksum: 10c0/8c337fd4166cd45aa7500b0ed3e19f6d5a5bc8c3d2b1ff554c1bc4735b14a3b816516bde2a759bba4ac066be3d8ea5988ecf02fe616507b6b82c6c9b1e70e969
   languageName: node
   linkType: hard
 
@@ -3059,6 +3076,8 @@ __metadata:
     "@types/jsonwebtoken": "npm:^9"
     "@types/node": "npm:^22.10.2"
     "@types/pg": "npm:^8.11.10"
+    "@types/swagger-jsdoc": "npm:^6.0.4"
+    "@types/swagger-ui-express": "npm:^4.1.7"
     bcrypt: "npm:^5.1.1"
     cors: "npm:^2.8.5"
     dotenv: "npm:^16.4.7"

@@ -19,14 +19,13 @@ export const comparePassword = async (
   return await bcrypt.compare(inputPassword, storedPassword);
 };
 
-export const generateToken = (
-  userInfo: UserInfo,
-  expiresIn: string = "8h"
-): string => {
+export const generateToken = (userInfo: UserInfo): string => {
   if (!process.env.JWT_SECRET) {
     throw new Error("JWT_SECRET is not defined in the environment variables.");
   }
-  return jwt.sign({ id: userInfo.id }, process.env.JWT_SECRET, { expiresIn });
+  return jwt.sign({ id: userInfo.id }, process.env.JWT_SECRET, {
+    expiresIn: "8h",
+  });
 };
 
 export const exclude = <T, Key extends keyof T>(
