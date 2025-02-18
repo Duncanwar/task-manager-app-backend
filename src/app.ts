@@ -14,7 +14,6 @@ app.get("/", (req: Request, res: Response, next: NextFunction) => {
 });
 app.use(cors());
 app.use(express.json());
-app.use(route);
 
 const swaggerOptions = {
   swaggerDefinition: {
@@ -43,6 +42,7 @@ const swaggerOptions = {
 };
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use(route);
 
 const startServer = async (): Promise<void> => {
   try {
