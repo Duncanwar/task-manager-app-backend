@@ -21,6 +21,8 @@ services:
     environment:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
+      - JWT_KEY: ${JWT_KEY} 
+      - NODE_ENV: ${NODE_ENV} 
  
 volumes:
  data: 
